@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Reloj" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Current Time -->
+            <StackLayout class="text-center p-4 bg-white dark:bg-gray-800 rounded-lg shadow">
+                <Label text="{{ time }}" class="text-6xl font-bold text-gray-800 dark:text-white" />
+                <Label text="{{ date }}" class="text-xl text-gray-600 dark:text-gray-300" />
+                <Label text="{{ timezone }}" class="text-gray-500 dark:text-gray-400" />
+            </StackLayout>
+
+            <!-- World Clock -->
+            <ListView items="{{ worldClocks }}" class="mt-4">
+                <ListView.itemTemplate>
+                    <GridLayout columns="*, auto" class="p-2 bg-white dark:bg-gray-800 rounded">
+                        <StackLayout col="0">
+                            <Label text="{{ city }}" class="font-bold text-gray-800 dark:text-white" />
+                            <Label text="{{ timezone }}" class="text-gray-500 dark:text-gray-400" />
+                        </StackLayout>
+                        <Label col="1" text="{{ time }}" class="text-xl text-gray-800 dark:text-white" />
+                    </GridLayout>
+                </ListView.itemTemplate>
+            </ListView>
+        </StackLayout>
+    </ScrollView>
+</Page>

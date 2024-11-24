@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Alarmas">
+        <ActionItem tap="{{ addAlarm }}" ios.position="right" android.position="actionBar">
+            <Label text="+" class="fas text-2xl" />
+        </ActionItem>
+    </ActionBar>
+
+    <GridLayout>
+        <ListView items="{{ alarms }}" class="list-group">
+            <ListView.itemTemplate>
+                <GridLayout columns="auto, *, auto" class="p-2 bg-white dark:bg-gray-800">
+                    <Switch col="0" checked="{{ enabled }}" tap="{{ toggleAlarm }}" />
+                    <StackLayout col="1" class="ml-2">
+                        <Label text="{{ time }}" class="text-lg font-bold text-gray-800 dark:text-white" />
+                        <Label text="{{ label }}" class="text-gray-600 dark:text-gray-300" />
+                        <Label text="{{ repeatDays }}" class="text-gray-500 dark:text-gray-400" />
+                    </StackLayout>
+                    <Label col="2" text="..." class="text-xl p-2" tap="{{ showOptions }}" />
+                </GridLayout>
+            </ListView.itemTemplate>
+        </ListView>
+
+        <Label text="No hay alarmas configuradas" 
+               class="text-center text-gray-500 p-4" 
+               visibility="{{ alarms.length === 0 ? 'visible' : 'collapsed' }}" />
+    </GridLayout>
+</Page>

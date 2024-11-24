@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <TabView selectedTabTextColor="#4CAF50" 
+             tabTextFontSize="16" 
+             androidTabsPosition="bottom">
+        <TabView.items>
+            <TabViewItem title="Reloj">
+                <StackLayout>
+                    <Label text="{{ clock.time }}" class="text-6xl text-center p-4" />
+                    <Label text="{{ clock.date }}" class="text-xl text-center" />
+                    <Label text="{{ clock.timezone }}" class="text-center text-gray-500" />
+                </StackLayout>
+            </TabViewItem>
+            
+            <TabViewItem title="Alarmas">
+                <StackLayout>
+                    <Button text="+ Nueva Alarma" tap="{{ alarms.addAlarm }}" class="btn btn-primary m-4" />
+                    <ListView items="{{ alarms.alarms }}" class="list-group">
+                        <ListView.itemTemplate>
+                            <GridLayout columns="auto,*" class="p-2">
+                                <Switch col="0" checked="{{ enabled }}" />
+                                <StackLayout col="1" class="ml-2">
+                                    <Label text="{{ time }}" class="text-lg" />
+                                    <Label text="{{ label }}" class="text-gray-500" />
+                                </StackLayout>
+                            </GridLayout>
+                        </ListView.itemTemplate>
+                    </ListView>
+                </StackLayout>
+            </TabViewItem>
+            
+            <TabViewItem title="Temporizador">
+                <StackLayout class="p-4">
+                    <Label text="{{ timer.stopwatchTime }}" class="text-6xl text-center" />
+                    <Button text="{{ timer.isStopwatchRunning ? 'Pausar' : 'Iniciar' }}" 
+                            tap="{{ timer.toggleStopwatch }}" 
+                            class="btn btn-primary m-4" />
+                </StackLayout>
+            </TabViewItem>
+            
+            <TabViewItem title="Ajustes">
+                <ScrollView>
+                    <StackLayout class="p-4">
+                        <GridLayout columns="*,auto" class="p-2">
+                            <Label text="Modo Oscuro" />
+                            <Switch col="1" checked="{{ settings.isDarkMode }}" />
+                        </GridLayout>
+                        <GridLayout columns="*,auto" class="p-2">
+                            <Label text="Formato 24h" />
+                            <Switch col="1" checked="{{ settings.is24HourFormat }}" />
+                        </GridLayout>
+                    </StackLayout>
+                </ScrollView>
+            </TabViewItem>
+        </TabView.items>
+    </TabView>
+</Page>

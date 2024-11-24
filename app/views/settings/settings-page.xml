@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Ajustes" />
+    
+    <ScrollView>
+        <StackLayout class="p-4">
+            <!-- Theme Settings -->
+            <Label text="Tema" class="text-lg font-bold mb-2" />
+            <StackLayout class="bg-white dark:bg-gray-800 p-4 rounded">
+                <GridLayout columns="*, auto">
+                    <Label text="Modo Oscuro" />
+                    <Switch col="1" checked="{{ isDarkMode }}" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Sound Settings -->
+            <Label text="Sonido" class="text-lg font-bold mt-4 mb-2" />
+            <StackLayout class="bg-white dark:bg-gray-800 p-4 rounded">
+                <Slider value="{{ volume }}" minValue="0" maxValue="100" />
+                <Label text="Volumen: {{ volume }}%" class="text-center" />
+                
+                <Label text="Sonido de Alarma" class="mt-2" />
+                <ListPicker items="{{ alarmSounds }}" selectedIndex="{{ selectedSoundIndex }}" />
+                
+                <GridLayout columns="*, auto" class="mt-2">
+                    <Label text="Vibración" />
+                    <Switch col="1" checked="{{ vibrationEnabled }}" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Time Format -->
+            <Label text="Formato de Hora" class="text-lg font-bold mt-4 mb-2" />
+            <StackLayout class="bg-white dark:bg-gray-800 p-4 rounded">
+                <GridLayout columns="*, auto">
+                    <Label text="Formato 24 horas" />
+                    <Switch col="1" checked="{{ is24HourFormat }}" />
+                </GridLayout>
+            </StackLayout>
+
+            <!-- Backup & Restore -->
+            <Label text="Copia de Seguridad" class="text-lg font-bold mt-4 mb-2" />
+            <StackLayout class="bg-white dark:bg-gray-800 p-4 rounded">
+                <Button text="Crear Copia de Seguridad" tap="{{ createBackup }}" class="-outline" />
+                <Button text="Restaurar" tap="{{ restoreBackup }}" class="-outline mt-2" />
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</Page>

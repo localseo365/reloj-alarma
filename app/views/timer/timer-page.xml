@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<Page xmlns="http://schemas.nativescript.org/tns.xsd" navigatingTo="onNavigatingTo">
+    <ActionBar title="Temporizador y Cronómetro" />
+    
+    <TabView selectedTabTextColor="#4CAF50">
+        <TabView.items>
+            <TabViewItem title="Temporizador">
+                <GridLayout rows="auto, *, auto" class="p-4">
+                    <GridLayout row="0" columns="*, *, *" class="text-center mb-4">
+                        <Label col="0" text="{{ hours }}" class="text-6xl" />
+                        <Label col="1" text="{{ minutes }}" class="text-6xl" />
+                        <Label col="2" text="{{ seconds }}" class="text-6xl" />
+                    </GridLayout>
+                    
+                    <StackLayout row="2" class="mt-4">
+                        <Button text="{{ isRunning ? 'Pausar' : 'Iniciar' }}" 
+                                tap="{{ toggleTimer }}"
+                                class="-primary" />
+                        <Button text="Reiniciar" 
+                                tap="{{ resetTimer }}"
+                                class="-outline" />
+                    </StackLayout>
+                </GridLayout>
+            </TabViewItem>
+            
+            <TabViewItem title="Cronómetro">
+                <StackLayout class="p-4">
+                    <Label text="{{ stopwatchTime }}" class="text-6xl text-center" />
+                    <ListView items="{{ laps }}" class="mt-4">
+                        <ListView.itemTemplate>
+                            <Label text="{{ $value }}" class="p-2" />
+                        </ListView.itemTemplate>
+                    </ListView>
+                    <StackLayout orientation="horizontal" class="mt-4">
+                        <Button text="{{ isStopwatchRunning ? 'Pausar' : 'Iniciar' }}" 
+                                tap="{{ toggleStopwatch }}"
+                                class="-primary" />
+                        <Button text="Vuelta" 
+                                tap="{{ lap }}"
+                                isEnabled="{{ isStopwatchRunning }}"
+                                class="-outline" />
+                        <Button text="Reiniciar" 
+                                tap="{{ resetStopwatch }}"
+                                class="-outline" />
+                    </StackLayout>
+                </StackLayout>
+            </TabViewItem>
+        </TabView.items>
+    </TabView>
+</Page>
